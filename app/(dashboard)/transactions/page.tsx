@@ -1,10 +1,9 @@
 
 import { Creditcard } from "@/app/components/overview/creditcard";
-import ExpenseStatisticsChart from "@/app/components/overview/ExpenseStatisticsChart";
-import RecentTransaction from "@/app/components/overview/RecentTransaction";
 import Sidebar from "@/app/components/layout/sidebar";
 import Topbar from "@/app/components/layout/topbar";
-import WeeklyActivityChart from "@/app/components/overview/WeeklyActivityChart";
+import RecentBalanceBar from "@/app/components/transactions/RecentBalanceBar";
+import RecentTransactionsTable from "@/app/components/transactions/RecentTransactionsTable";
 
 export default function DashboardPage() {
     return (
@@ -15,12 +14,13 @@ export default function DashboardPage() {
                 <div className="flex flex-col gap-3">
 
                     <Creditcard />
-                    <WeeklyActivityChart />
-                    <ExpenseStatisticsChart />
+                    <RecentBalanceBar />
+            <div className=" w-full  flex justify-end ">
+
+                    <RecentTransactionsTable/>
+            </div>
                 </div>
-                <div className="flex  ml-6">
-                    <RecentTransaction />
-                </div>
+               
 
             </div>
 

@@ -2,10 +2,10 @@ import { Settings, Bell, Search } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-screen bg-white  flex flex-col ">
+    <header className="absolute z-10 top-0 left-0 w-screen bg-white  flex flex-col ">
       <div className=" w-screen mx-auto h-[100px] flex items-center justify-between px-10">
         {/* Logo */}
-        <div className="flex  min-w-[183px] h-9 ">
+        <div className="flex   min-w-[183px] h-9 ">
           <span className="ml-2.5 font-black text-[25px] leading-8 text-[#343C6A] font-['Mont',_Inter,_sans-serif]">
             Dashboard
           </span>

@@ -27,7 +27,7 @@ const renderCustomLabel = ({
     <text
       x={x}
       y={y}
-      fill="#fff"
+      fill="#f"
       textAnchor={x > cx ? "start" : "end"}
       dominantBaseline="central"
       fontSize="16"
@@ -41,11 +41,11 @@ const renderCustomLabel = ({
 
 export default function ExpenseStatisticsChart() {
   return (
-    <section className="w-[350px] h-[367px] bg-[#F3F6FB] rounded-[18px] p-5 flex flex-col gap-3">
+    <section className="w-[800px] h-[450px]  rounded-[18px] p-5 flex flex-col gap-3">
       <h2 className="font-semibold text-[22px] leading-[27px] text-[#343C6A]">
         Expense Statistics
       </h2>
-      <div className="bg-white rounded-[25px] w-full h-[322px] flex flex-col items-center justify-center">
+      <div className="bg-stone-200 rounded-[25px] px-4 py-2 w-full h-[400px] items-center justify-center">
         <ResponsiveContainer width="98%" height={210}>
           <PieChart>
             <Pie
@@ -80,7 +80,7 @@ export default function ExpenseStatisticsChart() {
             />
           </PieChart>
         </ResponsiveContainer>
-        <div className="mt-2 w-full flex flex-col items-center gap-2">
+        <div className="mt-2 w-full flex items-center gap-2">
           {data.map((entry) => (
             <div key={entry.name} className="flex items-center justify-center gap-2">
               <span

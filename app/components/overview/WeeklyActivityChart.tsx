@@ -51,7 +51,7 @@ const data = [
 
 export default function WeeklyActivityChart() {
   return (
-    <section className="w-[730px] min-h-[367px] rounded-[25px] bg-[#F3F6FB] p-6">
+    <section className="w-[800px] min-h-[367px] rounded-[25px]  p-6">
       <div className="flex items-center justify-between px-2 mb-4">
         <h2 className="font-semibold text-[22px] leading-[27px] text-[#343C6A]">Weekly Activity</h2>
         <div className="flex items-center gap-6">
