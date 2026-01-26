@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Creditcard() {
   return (
-    <section className="w-[730px] h-[282px]">
+    <section className=" h-[282px] w-[730px]">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-[22px] font-semibold leading-[27px] text-[#343C6A]">
