@@ -1,19 +1,10 @@
-const transactions = [
-    { date: "2026-01-25", customer: "Alice Smith", amount: 320.5, status: "Completed" },
-    { date: "2026-01-24", customer: "Bob Johnson", amount: 150.0, status: "Pending" },
-    { date: "2026-01-23", customer: "Charlie Lee", amount: 780.2, status: "Completed" },
-    { date: "2026-01-22", customer: "Diana King", amount: 50.0, status: "Failed" },
-    { date: "2026-01-21", customer: "Evan Wright", amount: 210.0, status: "Completed" },
-    { date: "2026-01-20", customer: "Fiona Green", amount: 99.99, status: "Completed" },
-];
-
 const statusColors: Record<string, string> = {
     Completed: "text-green-600 bg-green-50",
     Pending: "text-yellow-700 bg-yellow-50",
     Failed: "text-red-600 bg-red-50",
 };
 
-export default function TransactionsTable() {
+export default function TransactionsTable({ transactions }: { transactions: any[] }) {
     return (
         <div className="bg-white rounded-lg shadow p-6 overflow-x-auto">
             <h2 className="text-lg font-semibold mb-4">Recent Transactions</h2>
