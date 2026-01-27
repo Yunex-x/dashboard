@@ -1,30 +1,8 @@
-
-import { Creditcard } from "@/app/components/overview/creditcard";
-import ExpenseStatisticsChart from "@/app/components/overview/ExpenseStatisticsChart";
-import RecentTransaction from "@/app/components/overview/RecentTransaction";
-import Sidebar from "@/app/components/layout/sidebar";
-import Topbar from "@/app/components/layout/topbar";
-import WeeklyActivityChart from "@/app/components/overview/WeeklyActivityChart";
-
-export default function DashboardPage() {
+export default function OverviewPage() {
     return (
-        <main className="w-full min-h-screen flex bg-[#F5F7FA]">
-            <Sidebar />
-            <Topbar />
-            <div className=" w-full flex justify-between py-31.25  px-75 ">
-                <div className="flex flex-col gap-3">
-
-                    <Creditcard />
-                    <WeeklyActivityChart />
-                    <ExpenseStatisticsChart />
-                </div>
-                <div className="flex  ml-6">
-                    <RecentTransaction />
-                </div>
-
-            </div>
-
-
-        </main>
-    )
-};
+        <div className="p-8">
+            <h1 className="text-3xl font-bold mb-4">Overview</h1>
+            <p>Welcome to the overview page. Add your dashboard widgets and summary here.</p>
+        </div>
+    );
+}
