@@ -26,7 +26,16 @@ const data = [
     { month: "Dec", revenue: 15500, users: 210 },
 ];
 
-export default function PerformanceChart({ type = "line", metric = "revenue" }: { type?: "line" | "bar"; metric?: "revenue" | "users" }) {
+type ChartType = "line" | "bar";
+type MetricType = "revenue" | "users";
+
+export default function PerformanceChart({
+    type = "line",
+    metric = "revenue",
+}: {
+    type?: ChartType;
+    metric?: MetricType;
+}) {
     return (
         <div className="bg-white border border-[#DCE3F1] rounded-[14px] p-6 shadow-[0_2px_6px_rgba(59,130,246,0.08)]">
             <h2 className="text-[17px] font-semibold text-[#0F172A] mb-4">

@@ -51,6 +51,13 @@ export default function Header() {
     { id: 3, title: "Performance report ready", time: "1d ago" },
   ];
 
+  // Controlled input state for search bar
+  const [searchValue, setSearchValue] = useState("");
+  // Error state for search
+  const [searchError, setSearchError] = useState<string | null>(null);
+  // Loading flag for search
+  const [searchLoading, setSearchLoading] = useState(false);
+
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (
@@ -98,7 +105,22 @@ export default function Header() {
       <div className="flex items-center gap-6 mt-4 sm:mt-0">
         {/* Search bar for dashboard */}
         <div className="hidden lg:block w-[290px]">
-          <form className="relative" role="search" onSubmit={e => e.preventDefault()}>
+          <form
+            className="relative"
+            role="search"
+            onSubmit={e => {
+              e.preventDefault();
+              setSearchError(null);
+              setSearchLoading(true);
+              // Simulate async search
+              setTimeout(() => {
+                if (!searchValue.trim()) {
+                  setSearchError("Please enter a search term.");
+                }
+                setSearchLoading(false);
+              }, 700);
+            }}
+          >
             <input
               className="
                 w-full pl-10 pr-4 py-2 bg-[#F8FAFF] border border-[#DCE3F1]
@@ -107,12 +129,24 @@ export default function Header() {
               "
               type="text"
               placeholder="Search…"
+              value={searchValue}
+              onChange={e => {
+                setSearchValue(e.target.value);
+                if (searchError) setSearchError(null);
+              }}
+              disabled={searchLoading}
             />
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#DCE3F1]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
             </svg>
+            {searchLoading && (
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#64748B]">Loading…</span>
+            )}
           </form>
+          {searchError && (
+            <div className="text-xs text-[#EF4444] mt-1 ml-1">{searchError}</div>
+          )}
         </div>
         {/* Notifications */}
         <div className="relative">

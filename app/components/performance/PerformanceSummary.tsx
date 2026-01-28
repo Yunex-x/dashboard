@@ -34,7 +34,9 @@ export default function PerformanceSummary() {
                         <ShoppingCart size={20} />
                     </span>
                     <span className="text-[#64748B] text-[13px]">AOV</span>
-                    <span className="text-[17px] font-bold text-[#7c3aed]">${performance.aov.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                    <span className="text-[17px] font-bold text-[#7c3aed]">
+                        ${performance.aov.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                    </span>
                 </div>
             </div>
         </div>

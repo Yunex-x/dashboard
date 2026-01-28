@@ -1,11 +1,11 @@
 import { TrendingUp, Users, DollarSign, BarChart2 } from "lucide-react";
+import React from "react";
 
 interface KpiCardProps {
     title: string;
     value: string | number;
     icon: React.ReactNode;
     change?: string;
-    color?: string;
 }
 
 function KpiCard({ title, value, icon, change }: KpiCardProps) {

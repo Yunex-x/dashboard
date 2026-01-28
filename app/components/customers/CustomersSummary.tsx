@@ -20,21 +20,25 @@ export default function CustomersSummary() {
         <div className="bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_2px_6px_rgba(59,130,246,0.08)] p-6 flex flex-col gap-6">
             <h2 className="text-[17px] font-semibold text-[#0F172A] mb-2">Customers Summary</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Total Customers */}
                 <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
                     <UserPlus className="text-[#3B82F6]" size={24} />
                     <span className="text-[#64748B] text-[13px]">Total Customers</span>
                     <span className="text-[24px] font-bold text-[#2563EB]">{totalCustomers}</span>
                 </div>
+                {/* New Customers */}
                 <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
                     <UserPlus className="text-[#22C55E]" size={24} />
                     <span className="text-[#64748B] text-[13px]">New Customers</span>
                     <span className="text-[24px] font-bold text-[#22C55E]">{newCustomers}</span>
                 </div>
+                {/* Active */}
                 <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
                     <UserCheck className="text-[#22C55E]" size={24} />
                     <span className="text-[#64748B] text-[13px]">Active</span>
                     <span className="text-[24px] font-bold text-[#22C55E]">{active}</span>
                 </div>
+                {/* Inactive */}
                 <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
                     <UserX className="text-[#EF4444]" size={24} />
                     <span className="text-[#64748B] text-[13px]">Inactive</span>
