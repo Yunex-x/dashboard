@@ -16,15 +16,18 @@ export default function CustomersFilter({ onChange }: { onChange?: (status: stri
     };
 
     return (
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2 mb-4" role="tablist" aria-label="Customer status filter">
             {options.map((opt) => (
                 <button
                     key={opt.value}
                     className={`px-4 py-2 rounded font-medium border transition text-sm ${selected === opt.value
-                            ? "bg-blue-600 text-white border-blue-600"
-                            : "bg-white text-gray-700 border-gray-300 hover:bg-blue-50"
+                        ? "bg-blue-600 text-white border-blue-600"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-blue-50"
                         }`}
                     onClick={() => handleSelect(opt.value)}
+                    role="tab"
+                    aria-selected={selected === opt.value}
+                    aria-pressed={selected === opt.value}
                 >
                     {opt.label}
                 </button>

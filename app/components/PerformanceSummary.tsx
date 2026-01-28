@@ -11,7 +11,7 @@ export default function PerformanceSummary() {
     return (
         <div className="bg-white rounded-lg shadow p-6 flex flex-col gap-4">
             <h2 className="text-lg font-semibold mb-2">Performance Summary</h2>
-            <div className="flex flex-wrap gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-center gap-2">
                     <Percent className="text-blue-600" size={20} />
                     <span className="text-gray-500 text-sm">Conversion Rate</span>

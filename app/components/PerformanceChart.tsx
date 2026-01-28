@@ -35,14 +35,20 @@ export default function PerformanceChart({ type = "line", metric = "revenue" }: 
                     <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                         <XAxis dataKey="month" axisLine={false} tickLine={false} />
                         <YAxis axisLine={false} tickLine={false} tickFormatter={v => metric === "revenue" ? `$${v / 1000}k` : v} />
-                        <Tooltip formatter={v => metric === "revenue" ? `$${v.toLocaleString()}` : v} />
+                        <Tooltip formatter={v => {
+                            if (v === undefined || v === null) return '';
+                            return metric === "revenue" ? `$${Number(v).toLocaleString()}` : v;
+                        }} />
                         <Line type="monotone" dataKey={metric} stroke="#2563eb" strokeWidth={3} dot={false} />
                     </LineChart>
                 ) : (
                     <BarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
                         <XAxis dataKey="month" axisLine={false} tickLine={false} />
                         <YAxis axisLine={false} tickLine={false} tickFormatter={v => metric === "revenue" ? `$${v / 1000}k` : v} />
-                        <Tooltip formatter={v => metric === "revenue" ? `$${v.toLocaleString()}` : v} />
+                        <Tooltip formatter={v => {
+                            if (v === undefined || v === null) return '';
+                            return metric === "revenue" ? `$${Number(v).toLocaleString()}` : v;
+                        }} />
                         <Bar dataKey={metric} fill="#2563eb" radius={[4, 4, 0, 0]} />
                     </BarChart>
                 )}

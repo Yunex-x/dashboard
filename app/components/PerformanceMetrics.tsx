@@ -19,7 +19,7 @@ export default function PerformanceMetrics() {
     return (
         <div className="bg-white rounded-lg shadow p-6 flex flex-col gap-4">
             <h2 className="text-lg font-semibold mb-2">Performance Metrics</h2>
-            <div className="flex flex-wrap gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="flex items-center gap-2">
                     <Calendar className="text-blue-600" size={20} />
                     <span className="text-gray-500 text-sm">Best Day</span>

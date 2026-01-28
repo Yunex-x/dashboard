@@ -22,12 +22,12 @@ function KpiCard({ title, value, icon, change, color }: KpiCardProps) {
         }
     }
     return (
-        <div className="bg-white rounded-lg shadow p-6 flex items-center gap-4 min-w-[220px]">
-            <div className={`p-2 rounded-full bg-blue-50 text-blue-600 ${color || ""}`}>{icon}</div>
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6 flex items-center gap-4 min-w-55">
+            <div className={`p-2 rounded-full bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300 ${color || ""}`}>{icon}</div>
             <div>
-                <div className="text-gray-500 text-sm font-medium mb-1">{title}</div>
-                <div className="text-2xl font-bold text-gray-800">{value}</div>
-                <div className={`text-xs mt-1 flex items-center gap-1 ${changeColor}`}>
+                <div className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">{title}</div>
+                <div className="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">{value}</div>
+                <div className={`text-xs mt-1 flex items-center gap-1 ${changeColor} dark:${changeColor.replace('text-', 'text-')}`}> {/* fallback for dark mode */}
                     {changeIcon} {change || "-"}
                 </div>
             </div>
@@ -65,7 +65,7 @@ export default function KpiCardsRow() {
     ];
 
     return (
-        <div className="flex justify-evenly px-8 flex-wrap gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-8">
             {kpis.map((kpi) => (
                 <KpiCard key={kpi.title} {...kpi} />
             ))}
