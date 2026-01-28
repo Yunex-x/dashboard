@@ -1,40 +1,25 @@
-
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Sidebar from "./components/sidebar";
-import Header from "./components/header";
 import "./globals.css";
+import { Inter } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
+export const metadata = {
   title: "dashboard-nextjs",
   description: "A modern dashboard layout built with Next.js and Tailwind CSS",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <div className="flex-1 flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1 p-4 md:p-8">{children}</main>
-          </div>
-        </div>
+    <html lang="en" className={inter.variable}>
+      <body className="antialiased bg-gray-50 font-sans">
+        {children}
       </body>
     </html>
   );

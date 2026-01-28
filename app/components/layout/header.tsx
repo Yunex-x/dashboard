@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { ChevronDown, User, Settings, LogOut, Bell, ChevronRight } from "lucide-react";
 
 const routeTitles: Record<string, string> = {
@@ -10,17 +11,26 @@ const routeTitles: Record<string, string> = {
   "/performance": "Performance",
 };
 
+/** Breadcrumbs displays current route path as clickable trail */
 function Breadcrumbs({ pathname }: { pathname: string }) {
   const segments = pathname.replace(/^\//, "").split("/").filter(Boolean);
+  let path = "";
   return (
     <nav className="hidden sm:flex items-center text-[13px] text-[#64748B] space-x-1" aria-label="Breadcrumb">
-      <span className="hover:underline cursor-pointer text-[#334155]">Dashboard</span>
-      {segments.map((seg, idx) => (
-        <span key={idx} className="flex items-center space-x-1">
-          <ChevronRight className="inline-block w-[18px] h-[18px] text-[#DCE3F1]" />
-          <span>{routeTitles["/" + seg] || (seg.charAt(0).toUpperCase() + seg.slice(1))}</span>
-        </span>
-      ))}
+      <Link href="/overview" className="hover:underline cursor-pointer text-[#334155] font-semibold">
+        Dashboard
+      </Link>
+      {segments.map((seg, idx) => {
+        path += "/" + seg;
+        return (
+          <span key={idx} className="flex items-center space-x-1">
+            <ChevronRight className="inline-block w-[18px] h-[18px] text-[#DCE3F1]" />
+            <span>
+              {routeTitles[path] || (seg.charAt(0).toUpperCase() + seg.slice(1))}
+            </span>
+          </span>
+        );
+      })}
     </nav>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import CustomersTable from "@/app/components/customers-table";
-import CustomersFilter from "@/app/components/CustomersFilter";
-import CustomersSummary from "@/app/components/CustomersSummary";
+import CustomersTable from "@/app/components/customers/customers-table";
+import CustomersFilter from "@/app/components/customers/CustomersFilter";
+import CustomersSummary from "@/app/components/customers/CustomersSummary";
 
 const customers = [
     { name: "Alice Smith", email: "alice@example.com", active: true, totalSpent: 1200.5 },

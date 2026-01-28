@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import TransactionsSummary from "@/app/components/transactions-summary";
-import TransactionsTable from "@/app/components/transactions";
-import TransactionsFilter from "@/app/components/transactions-filter";
+import TransactionsSummary from "@/app/components/transactions/transactions-summary";
+import TransactionsTable from "@/app/components/transactions/transactions";
+import TransactionsFilter from "@/app/components/transactions/transactions-filter";
 
 export default function TransactionPage() {
     const [filter, setFilter] = useState("all");
@@ -21,7 +21,7 @@ export default function TransactionPage() {
         : transactions.filter(tx => tx.status === filter);
 
     return (
-        <div className="bg-[#F5F8FF] min-h-screen flex flex-col items-center">
+        <div className=" min-h-screen flex flex-col items-center">
             <div className="w-full max-w-5xl px-4 py-10 flex flex-col gap-8">
                 <h1 className="text-[28px] font-bold text-[#0F172A] mb-2 tracking-tight">Transactions</h1>
                 <TransactionsSummary />

@@ -50,7 +50,7 @@ export default function Sidebar() {
             <X size={24} className="text-[#64748B]" />
           </button>
         </div>
-        <nav className="flex flex-col gap-1 mt-8 px-3">
+        <nav className="flex flex-col gap-10 mt-8 px-3">
           {menu.map(({ label, icon: Icon, route }) => {
             const active = pathname.startsWith(route);
             return (
