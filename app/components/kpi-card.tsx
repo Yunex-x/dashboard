@@ -8,26 +8,27 @@ interface KpiCardProps {
     color?: string;
 }
 
-function KpiCard({ title, value, icon, change, color }: KpiCardProps) {
-    // Determine color and icon for change
-    let changeColor = "text-gray-500";
+function KpiCard({ title, value, icon, change }: KpiCardProps) {
+    let changeColor = "text-[#64748B]";
     let changeIcon = null;
     if (change) {
         if (change.startsWith("+")) {
-            changeColor = "text-green-600";
-            changeIcon = <TrendingUp size={14} />;
+            changeColor = "text-[#22C55E]";
+            changeIcon = <TrendingUp size={15} className="inline-block" />;
         } else if (change.startsWith("-")) {
-            changeColor = "text-red-600";
-            changeIcon = <TrendingUp size={14} className="rotate-180" />;
+            changeColor = "text-[#EF4444]";
+            changeIcon = <TrendingUp size={15} className="inline-block rotate-180" />;
         }
     }
     return (
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-6 flex items-center gap-4 min-w-55">
-            <div className={`p-2 rounded-full bg-blue-50 dark:bg-blue-900 text-blue-600 dark:text-blue-300 ${color || ""}`}>{icon}</div>
-            <div>
-                <div className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">{title}</div>
-                <div className="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">{value}</div>
-                <div className={`text-xs mt-1 flex items-center gap-1 ${changeColor} dark:${changeColor.replace('text-', 'text-')}`}> {/* fallback for dark mode */}
+        <div className="bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_2px_6px_rgba(59,130,246,0.08)] p-6 flex items-center gap-4 min-w-0">
+            <div className="p-3 rounded-full bg-[#EAF1FF] text-[#3B82F6] flex items-center justify-center">
+                {icon}
+            </div>
+            <div className="min-w-0">
+                <div className="text-[#64748B] text-[13px] font-medium mb-1 truncate">{title}</div>
+                <div className="text-[24px] font-bold text-[#0F172A] leading-[1.1] truncate">{value}</div>
+                <div className={`text-xs mt-1 flex items-center gap-1 ${changeColor}`}>
                     {changeIcon} {change || "-"}
                 </div>
             </div>
@@ -65,7 +66,7 @@ export default function KpiCardsRow() {
     ];
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {kpis.map((kpi) => (
                 <KpiCard key={kpi.title} {...kpi} />
             ))}

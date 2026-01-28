@@ -7,7 +7,6 @@ import TransactionsFilter from "@/app/components/transactions-filter";
 export default function TransactionPage() {
     const [filter, setFilter] = useState("all");
 
-    // Use the same transactions array as in the table
     const transactions = [
         { date: "2026-01-25", customer: "Alice Smith", amount: 320.5, status: "Completed" },
         { date: "2026-01-24", customer: "Bob Johnson", amount: 150.0, status: "Pending" },
@@ -22,11 +21,13 @@ export default function TransactionPage() {
         : transactions.filter(tx => tx.status === filter);
 
     return (
-        <div className="p-8 flex flex-col gap-8">
-            <h1 className="text-3xl font-bold mb-4">Transactions</h1>
-            <TransactionsSummary />
-            <TransactionsFilter onChange={setFilter} />
-            <TransactionsTable transactions={filteredTransactions} />
+        <div className="bg-[#F5F8FF] min-h-screen flex flex-col items-center">
+            <div className="w-full max-w-5xl px-4 py-10 flex flex-col gap-8">
+                <h1 className="text-[28px] font-bold text-[#0F172A] mb-2 tracking-tight">Transactions</h1>
+                <TransactionsSummary />
+                <TransactionsFilter onChange={setFilter} />
+                <TransactionsTable transactions={filteredTransactions} />
+            </div>
         </div>
     );
 }

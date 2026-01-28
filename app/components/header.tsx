@@ -11,14 +11,13 @@ const routeTitles: Record<string, string> = {
 };
 
 function Breadcrumbs({ pathname }: { pathname: string }) {
-  // Remove leading slash and split
   const segments = pathname.replace(/^\//, "").split("/").filter(Boolean);
   return (
-    <nav className="hidden sm:flex items-center text-sm text-gray-500 dark:text-gray-400 space-x-1" aria-label="Breadcrumb">
-      <span className="hover:underline cursor-pointer text-gray-700 dark:text-gray-200">Dashboard</span>
+    <nav className="hidden sm:flex items-center text-[13px] text-[#64748B] space-x-1" aria-label="Breadcrumb">
+      <span className="hover:underline cursor-pointer text-[#334155]">Dashboard</span>
       {segments.map((seg, idx) => (
         <span key={idx} className="flex items-center space-x-1">
-          <ChevronRight className="inline-block w-4 h-4 text-gray-400" />
+          <ChevronRight className="inline-block w-[18px] h-[18px] text-[#DCE3F1]" />
           <span>{routeTitles["/" + seg] || (seg.charAt(0).toUpperCase() + seg.slice(1))}</span>
         </span>
       ))}
@@ -35,14 +34,13 @@ export default function Header() {
   const notifRef = useRef<HTMLButtonElement>(null);
   const notifMenuRef = useRef<HTMLDivElement>(null);
 
-  // FAKE notifications
+  // Demo notifications
   const notifications = [
     { id: 1, title: "Payment received", time: "2h ago" },
     { id: 2, title: "New customer: Jane Doe", time: "4h ago" },
     { id: 3, title: "Performance report ready", time: "1d ago" },
   ];
 
-  // Dropdowns: close on click-away and Escape
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (
@@ -79,49 +77,48 @@ export default function Header() {
   }, [dropdownOpen, notifOpen]);
 
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm sticky top-0 z-10">
-      {/* Left Side: Title + Breadcrumbs */}
-      <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 tracking-tight">{routeTitles[pathname] || "Dashboard"}</h1>
+    <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-8 py-6 bg-white border-b border-[#DCE3F1] shadow-[0_2px_6px_rgba(59,130,246,0.08)] sticky top-0 z-20 rounded-b-[14px]">
+      <div>
+        <h1 className="text-[28px] font-bold text-[#0F172A] mb-2 tracking-tight">
+          {routeTitles[pathname] || "Dashboard"}
+        </h1>
         <Breadcrumbs pathname={pathname} />
       </div>
-
-      {/* Center: Search bar */}
-      <div className="flex-1 mx-8 max-w-md hidden lg:block">
-        <form
-          className="relative"
-          role="search"
-          onSubmit={e => e.preventDefault()}
-        >
-          <input
-            className="w-full pl-10 pr-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 dark:placeholder-gray-500 text-sm"
-            type="text"
-            placeholder="Search…"
-          />
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-        </form>
-      </div>
-
-      {/* Right Side: Notifications + Avatar */}
-      <div className="flex items-center gap-4">
-        {/* Notifications Button */}
+      {/* Right Side: Search, Notifications, Avatar */}
+      <div className="flex items-center gap-6 mt-4 sm:mt-0">
+        {/* Search bar for dashboard */}
+        <div className="hidden lg:block w-[290px]">
+          <form className="relative" role="search" onSubmit={e => e.preventDefault()}>
+            <input
+              className="
+                w-full pl-10 pr-4 py-2 bg-[#F8FAFF] border border-[#DCE3F1]
+                rounded-[10px] text-[15px] placeholder-[#64748B] text-[#334155]
+                focus:outline-none focus:ring-2 focus:ring-[#3B82F6] font-medium shadow-none
+              "
+              type="text"
+              placeholder="Search…"
+            />
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#DCE3F1]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </form>
+        </div>
+        {/* Notifications */}
         <div className="relative">
           <button
             ref={notifRef}
             onClick={() => setNotifOpen((o) => !o)}
-            className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="relative p-2 rounded-full bg-[#F8FAFF] hover:bg-[#EAF1FF] border border-[#DCE3F1] shadow focus:outline-none focus:ring-2 focus:ring-[#3B82F6] transition"
             aria-label="Notifications"
             aria-haspopup="true"
             aria-expanded={notifOpen}
             aria-controls="notifications-menu"
             type="button"
           >
-            <Bell className="w-6 h-6" />
+            <Bell className="w-6 h-6 text-[#2563EB]" />
             {notifications.length > 0 && (
-              <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-gray-900"></span>
+              <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-[#EF4444] rounded-full border-2 border-white" />
             )}
           </button>
           {/* Notification Dropdown */}
@@ -129,28 +126,27 @@ export default function Header() {
             <div
               ref={notifMenuRef}
               id="notifications-menu"
-              className="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-md shadow-lg py-2 z-20 animate-fadeInUp"
+              className="absolute right-0 mt-2 w-80 bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_6px_14px_rgba(59,130,246,0.12)] py-2 z-30 animate-fadeInUp"
               tabIndex={-1}
               role="menu"
             >
-              <div className="px-4 py-2 font-semibold text-gray-700 dark:text-gray-200 border-b dark:border-gray-700">Notifications</div>
+              <div className="px-6 py-3 font-semibold text-[#0F172A] border-b border-[#E2E8F0] text-[16px]">Notifications</div>
               {notifications.length === 0 && (
-                <div className="px-4 py-4 text-gray-500 dark:text-gray-400">No new notifications</div>
+                <div className="px-6 py-8 text-[#64748B]">No new notifications</div>
               )}
               {notifications.map((notif) => (
-                <div key={notif.id} className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer text-gray-700 dark:text-gray-100 flex justify-between items-center">
+                <div key={notif.id} className="px-6 py-3 hover:bg-[#F8FAFF] text-[#334155] flex justify-between items-center cursor-pointer text-[15px]">
                   <span>{notif.title}</span>
-                  <span className="text-xs text-gray-400 ml-4">{notif.time}</span>
+                  <span className="text-xs text-[#64748B] ml-4">{notif.time}</span>
                 </div>
               ))}
             </div>
           )}
         </div>
-
         {/* Avatar Dropdown */}
         <div className="relative">
           <button
-            className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-full"
+            className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#3B82F6] rounded-full border border-[#DCE3F1] bg-[#F8FAFF] hover:bg-[#EAF1FF] px-1.5 py-1 shadow transition"
             onClick={() => setDropdownOpen(open => !open)}
             aria-haspopup="true"
             aria-expanded={dropdownOpen}
@@ -161,9 +157,9 @@ export default function Header() {
             <img
               src="/avatar.png"
               alt="Avatar"
-              className="w-10 h-10 rounded-full border dark:border-gray-700"
+              className="w-10 h-10 rounded-full border border-[#DCE3F1]"
             />
-            <ChevronDown size={20} />
+            <ChevronDown size={20} className="text-[#64748B]" />
           </button>
           {dropdownOpen && (
             <div
@@ -171,11 +167,11 @@ export default function Header() {
               id="user-menu"
               role="menu"
               tabIndex={-1}
-              className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded shadow-lg py-2 z-20 animate-fadeInUp"
+              className="absolute right-0 mt-2 w-48 bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_6px_14px_rgba(59,130,246,0.12)] py-2 z-30 animate-fadeInUp"
               style={{ minWidth: 184 }}
             >
               <button
-                className="flex items-center w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-100 transition-colors"
+                className="flex items-center w-full px-4 py-2 hover:bg-[#F8FAFF] text-[#334155] transition-colors text-[15px]"
                 onClick={() => setDropdownOpen(false)}
                 role="menuitem"
                 tabIndex={0}
@@ -183,7 +179,7 @@ export default function Header() {
                 <User size={18} className="mr-2" /> Profile
               </button>
               <button
-                className="flex items-center w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-100 transition-colors"
+                className="flex items-center w-full px-4 py-2 hover:bg-[#F8FAFF] text-[#334155] transition-colors text-[15px]"
                 onClick={() => setDropdownOpen(false)}
                 role="menuitem"
                 tabIndex={0}
@@ -191,7 +187,7 @@ export default function Header() {
                 <Settings size={18} className="mr-2" /> Settings
               </button>
               <button
-                className="flex items-center w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-red-500 dark:text-red-400 transition-colors"
+                className="flex items-center w-full px-4 py-2 hover:bg-[#FEE2E2] text-[#EF4444] transition-colors text-[15px]"
                 onClick={() => setDropdownOpen(false)}
                 role="menuitem"
                 tabIndex={0}
@@ -202,7 +198,6 @@ export default function Header() {
           )}
         </div>
       </div>
-      {/* Simple animation for dropdown */}
       <style>
         {`
           .animate-fadeInUp {
