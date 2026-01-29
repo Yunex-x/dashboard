@@ -1,28 +1,20 @@
 "use client";
 
 import { TrendingUp, Percent, ShoppingCart } from "lucide-react";
-import { useEffect, useState } from "react";
-
-import { getPerformanceSummary } from "@/app/services/PerformanceSummary";
-import { PerformanceSummaryData } from "@/app/types/PerformanceSummary";
+import { usePerformanceSummary } from "@/app/hooks/usePerformanceSummary";
 
 export default function PerformanceSummary() {
-  const [performance, setPerformance] =
-    useState<PerformanceSummaryData | null>(null);
+  const { performance, loading } = usePerformanceSummary();
 
-  useEffect(() => {
-    getPerformanceSummary().then((res) => {
-      setPerformance(res);
-    });
-  }, []);
-
-  if (!performance) {
+  if (loading) {
     return (
       <div className="bg-white border border-[#DCE3F1] rounded-[14px] p-6">
         Loading summary…
       </div>
     );
   }
+
+  if (!performance) return null;
 
   return (
     <div className="bg-white border border-[#DCE3F1] rounded-[14px] p-6 shadow-[0_2px_6px_rgba(59,130,246,0.08)] flex flex-col gap-6">

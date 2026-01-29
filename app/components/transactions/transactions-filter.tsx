@@ -1,22 +1,21 @@
 "use client";
 
 import { transactionStatuses } from "@/app/services/transaction";
-import { useState } from "react";
+import { useTransactionsFilter } from "@/app/hooks/useTransactionsFilter";
 
 export default function TransactionsFilter({
   onChange,
 }: {
   onChange?: (status: string) => void;
 }) {
-  const [selected, setSelected] = useState("all");
-
-  const handleSelect = (value: string) => {
-    setSelected(value);
-    onChange?.(value);
-  };
+  const { selected, selectStatus } = useTransactionsFilter(onChange);
 
   return (
-    <div className="flex gap-2 mb-4" role="tablist" aria-label="Transaction status filter">
+    <div
+      className="flex gap-2 mb-4"
+      role="tablist"
+      aria-label="Transaction status filter"
+    >
       {transactionStatuses.map((s) => (
         <button
           key={s.value}
@@ -28,7 +27,7 @@ export default function TransactionsFilter({
                 : "bg-white text-[#64748B] border-[#DCE3F1] hover:bg-[#F8FAFF]"
             }
           `}
-          onClick={() => handleSelect(s.value)}
+          onClick={() => selectStatus(s.value)}
           role="tab"
           aria-selected={selected === s.value}
           aria-pressed={selected === s.value}
