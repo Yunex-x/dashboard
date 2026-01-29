@@ -1,12 +1,6 @@
 // app/services/customers.ts
 
-export interface Customer {
-  name: string;
-  joined: string;
-  email: string;
-  active: boolean;
-  totalSpent: number;
-}
+import type {  Customer } from "../types/customer";
 
 const customers: Customer[] = [
   {

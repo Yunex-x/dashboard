@@ -1,50 +1,59 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { UserPlus, UserCheck, UserX } from "lucide-react";
-
-// Mocked customers data
-const customers = [
-    { name: "Alice Smith", joined: "2026-01-10", active: true },
-    { name: "Bob Johnson", joined: "2026-01-15", active: false },
-    { name: "Charlie Lee", joined: "2026-01-20", active: true },
-    { name: "Diana King", joined: "2026-01-22", active: false },
-    { name: "Evan Wright", joined: "2026-01-25", active: true },
-    { name: "Fiona Green", joined: "2026-01-26", active: true },
-];
-
-const totalCustomers = customers.length;
-const newCustomers = customers.filter(c => c.joined >= "2026-01-20").length;
-const active = customers.filter(c => c.active).length;
-const inactive = customers.filter(c => !c.active).length;
+import { getCustomers, Customer } from "@/app/services/customers";
 
 export default function CustomersSummary() {
-    return (
-        <div className="bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_2px_6px_rgba(59,130,246,0.08)] p-6 flex flex-col gap-6">
-            <h2 className="text-[17px] font-semibold text-[#0F172A] mb-2">Customers Summary</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Total Customers */}
-                <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
-                    <UserPlus className="text-[#3B82F6]" size={24} />
-                    <span className="text-[#64748B] text-[13px]">Total Customers</span>
-                    <span className="text-[24px] font-bold text-[#2563EB]">{totalCustomers}</span>
-                </div>
-                {/* New Customers */}
-                <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
-                    <UserPlus className="text-[#22C55E]" size={24} />
-                    <span className="text-[#64748B] text-[13px]">New Customers</span>
-                    <span className="text-[24px] font-bold text-[#22C55E]">{newCustomers}</span>
-                </div>
-                {/* Active */}
-                <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
-                    <UserCheck className="text-[#22C55E]" size={24} />
-                    <span className="text-[#64748B] text-[13px]">Active</span>
-                    <span className="text-[24px] font-bold text-[#22C55E]">{active}</span>
-                </div>
-                {/* Inactive */}
-                <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
-                    <UserX className="text-[#EF4444]" size={24} />
-                    <span className="text-[#64748B] text-[13px]">Inactive</span>
-                    <span className="text-[24px] font-bold text-[#EF4444]">{inactive}</span>
-                </div>
-            </div>
-        </div>
-    );
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getCustomers().then((data) => {
+      setCustomers(data);
+      setLoading(false);
+    });
+  }, []);
+
+  const totalCustomers = customers.length;
+  const newCustomers = customers.filter(c => c.joined >= "2026-01-20").length;
+  const active = customers.filter(c => c.active).length;
+  const inactive = customers.filter(c => !c.active).length;
+
+  if (loading) {
+    return <div className="p-6">Loading summary...</div>;
+  }
+
+  return (
+    <div className="bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_2px_6px_rgba(59,130,246,0.08)] p-6 flex flex-col gap-6">
+      <h2 className="text-[17px] font-semibold text-[#0F172A] mb-2">
+        Customers Summary
+      </h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <SummaryCard label="Total Customers" value={totalCustomers} icon={<UserPlus className="text-[#3B82F6]" />} />
+        <SummaryCard label="New Customers" value={newCustomers} icon={<UserPlus className="text-[#22C55E]" />} />
+        <SummaryCard label="Active" value={active} icon={<UserCheck className="text-[#22C55E]" />} />
+        <SummaryCard label="Inactive" value={inactive} icon={<UserX className="text-[#EF4444]" />} />
+      </div>
+    </div>
+  );
+}
+
+function SummaryCard({
+  label,
+  value,
+  icon,
+}: {
+  label: string;
+  value: number;
+  icon: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-2 p-4 bg-[#F8FAFF] border border-[#DCE3F1] rounded-[14px]">
+      {icon}
+      <span className="text-[#64748B] text-[13px]">{label}</span>
+      <span className="text-[24px] font-bold text-[#2563EB]">{value}</span>
+    </div>
+  );
 }
