@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { UserPlus, UserCheck, UserX } from "lucide-react";
-import { getCustomers, Customer } from "@/app/services/customers";
+import { getCustomers } from "@/app/services/customers";
+import { Customer } from "@/app/types/customer";
+
 
 export default function CustomersSummary() {
   const [customers, setCustomers] = useState<Customer[]>([]);

@@ -1,5 +1,5 @@
 import KpiCardsRow from "@/app/components/overview/kpi-card";
-import RevenueChart from "@/app/components/overview/revenue";
+import RevenueChart from "@/app/components/overview/RevenueChart";
 import TransactionsTable from "@/app/components/transactions/transactions";
 
 export default function OverviewPage() {
