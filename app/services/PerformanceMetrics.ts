@@ -1,4 +1,4 @@
-import { PerformanceEntry } from "@/app/types/PerformanceChart";
+import { PerformanceEntry } from "@/app/types/PerformanceMetrics";
 const PerformanceMetrics: PerformanceEntry[] = [
     { day: "2026-01-20", revenue: 1200 },
     { day: "2026-01-21", revenue: 900 },

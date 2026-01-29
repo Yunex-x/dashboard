@@ -2,19 +2,31 @@
 import { ArrowUpRight, ArrowDownRight, Calendar } from "lucide-react";
 
 import { useEffect, useState } from "react";
-import {getPerformanceData  } from "@/app/services/PerformanceChart";
+import {getPerformanceData  } from "@/app/services/PerformanceMetrics";
 import {PerformanceEntry} from "@/app/types/PerformanceMetrics";
-const [data, setData] = useState<PerformanceEntry[]>([]);
-
-useEffect(() => {
-  getPerformanceData().then(setData);
-}, []);
-
-const best = data.reduce((max, d) => (d.revenue > max.revenue ? d : max), data[0]);
-const worst = data.reduce((min, d) => (d.revenue < min.revenue ? d : min), data[0]);
-const trend = data[data.length - 1].revenue > data[0].revenue ? "up" : "down";
 
 export default function PerformanceMetrics() {
+  const [data, setData] = useState<PerformanceEntry[]>([]);
+
+  useEffect(() => {
+    getPerformanceData().then((res) => setData(res));
+  }, []);
+
+  // ✅ GUARD
+  if (data.length === 0) {
+    return <div>Loading metrics…</div>;
+  }
+
+  // ✅ SAFE LOGIC
+  const best = data.reduce((max, d) =>
+    d.revenue > max.revenue ? d : max
+  );
+  const worst = data.reduce((min, d) =>
+    d.revenue < min.revenue ? d : min
+  );
+  const trend =
+    data[data.length - 1].revenue > data[0].revenue ? "up" : "down";
+
     return (
         <div className="bg-white border border-[#DCE3F1] rounded-[14px] p-6 shadow-[0_2px_6px_rgba(59,130,246,0.08)] flex flex-col gap-6">
             <h2 className="text-[17px] font-semibold text-[#0F172A] mb-2">Performance Metrics</h2>

@@ -1,16 +1,17 @@
 "use client";
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    Tooltip,
-    ResponsiveContainer,
-    BarChart,
-    Bar,
-} from "recharts";
 
 import { useEffect, useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+} from "recharts";
+
 import { getPerformanceData } from "@/app/services/PerformanceChart";
 import {
   PerformancePoint,
@@ -18,20 +19,26 @@ import {
   MetricType,
 } from "@/app/types/PerformanceChart";
 
-const [data, setData] = useState<PerformancePoint[]>([]);
-
-useEffect(() => {
-  getPerformanceData().then(setData);
-}, []);
-
 export default function PerformanceChart({
-    
-    type = "line",
-    metric = "revenue",
+  type = "line",
+  metric = "revenue",
 }: {
-    type?: ChartType;
-    metric?: MetricType;
+  type?: ChartType;
+  metric?: MetricType;
 }) {
+  // ✅ HOOKS INSIDE COMPONENT
+  const [data, setData] = useState<PerformancePoint[]>([]);
+
+  useEffect(() => {
+    getPerformanceData().then((res) => {
+      setData(res);
+    });
+  }, []);
+
+  if (data.length === 0) {
+    return <div>Loading chart…</div>;
+  }
+
     return (
         <div className="bg-white border border-[#DCE3F1] rounded-[14px] p-6 shadow-[0_2px_6px_rgba(59,130,246,0.08)]">
             <h2 className="text-[17px] font-semibold text-[#0F172A] mb-4">

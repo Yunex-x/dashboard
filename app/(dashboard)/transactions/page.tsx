@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import TransactionsSummary from "@/app/components/transactions/transactions-summary";
-import TransactionsTable from "@/app/components/transactions/transactions";
+import TransactionsTable from "@/app/components/transactions/TransactionsTable";
 import TransactionsFilter from "@/app/components/transactions/transactions-filter";
 
 export default function TransactionPage() {
