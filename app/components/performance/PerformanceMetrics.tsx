@@ -1,15 +1,14 @@
+"use client";
 import { ArrowUpRight, ArrowDownRight, Calendar } from "lucide-react";
 
-// Mocked daily revenue data
-const data = [
-    { day: "2026-01-20", revenue: 1200 },
-    { day: "2026-01-21", revenue: 900 },
-    { day: "2026-01-22", revenue: 1500 },
-    { day: "2026-01-23", revenue: 800 },
-    { day: "2026-01-24", revenue: 1700 },
-    { day: "2026-01-25", revenue: 1100 },
-    { day: "2026-01-26", revenue: 1400 },
-];
+import { useEffect, useState } from "react";
+import {getPerformanceData  } from "@/app/services/PerformanceChart";
+import {PerformanceEntry} from "@/app/types/PerformanceMetrics";
+const [data, setData] = useState<PerformanceEntry[]>([]);
+
+useEffect(() => {
+  getPerformanceData().then(setData);
+}, []);
 
 const best = data.reduce((max, d) => (d.revenue > max.revenue ? d : max), data[0]);
 const worst = data.reduce((min, d) => (d.revenue < min.revenue ? d : min), data[0]);
