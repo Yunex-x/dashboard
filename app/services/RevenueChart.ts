@@ -1,5 +1,5 @@
-import { RevenueChart } from "@/app/types/RevenueChart";
-const revenues: RevenueChart[] = [
+import { Revenue } from "@/app/types/RevenueChart";
+const revenues: Revenue[] = [
   { month: "Jan", revenue: 9000 },
   { month: "Feb", revenue: 11000 },
   { month: "Mar", revenue: 10500 },
@@ -14,6 +14,6 @@ const revenues: RevenueChart[] = [
   { month: "Dec", revenue: 15500 },
 ];
 
-export const getRevenues = async (): Promise<RevenueChart[]> => {
+export const getRevenues = async (): Promise<Revenue[]> => {
   return revenues;
 };

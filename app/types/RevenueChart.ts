@@ -1,4 +1,4 @@
-export interface RevenueChart {
+export interface Revenue {
   month: string;
   revenue: number;
 }

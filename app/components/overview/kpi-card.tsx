@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { TrendingUp } from "lucide-react";
-
+import { BarChart2, DollarSign, TrendingUp, Users } from "lucide-react";
 import { getKpis } from "@/app/services/kpi";
 import { Kpi } from "@/app/types/kpi";
 
-// ✅ Reuse Kpi type for props
-type KpiCardProps = Kpi;
+const ICON_MAP: Record<string, React.ReactNode> = {
+  DollarSign: <DollarSign size={18} />,
+  BarChart2: <BarChart2 size={18} />,
+  Users: <Users size={18} />,
+  TrendingUp: <TrendingUp size={18} />,
+};
+
+type KpiCardProps = Omit<Kpi, "icon"> & { icon: string };
 
 function KpiCard({ title, value, icon, change }: KpiCardProps) {
   let changeColor = "text-[#64748B]";
@@ -19,18 +24,17 @@ function KpiCard({ title, value, icon, change }: KpiCardProps) {
       changeIcon = <TrendingUp size={15} className="inline-block" />;
     } else if (change.startsWith("-")) {
       changeColor = "text-[#EF4444]";
-      changeIcon = (
-        <TrendingUp size={15} className="inline-block rotate-180" />
-      );
+      changeIcon = <TrendingUp size={15} className="inline-block rotate-180" />;
     }
   }
+
+  const IconComponent = ICON_MAP[icon] || null;
 
   return (
     <div className="bg-white border border-[#DCE3F1] rounded-[14px] shadow-[0_2px_6px_rgba(59,130,246,0.08)] p-6 flex items-center gap-4 min-w-0">
       <div className="p-3 rounded-full bg-[#EAF1FF] text-[#3B82F6] flex items-center justify-center">
-        {icon}
+        {IconComponent}
       </div>
-
       <div className="min-w-0">
         <div className="text-[#64748B] text-[13px] font-medium mb-1 truncate">
           {title}
@@ -47,12 +51,20 @@ function KpiCard({ title, value, icon, change }: KpiCardProps) {
 }
 
 export default function KpiCardsRow() {
-  const [kpis, setKpis] = useState<Kpi[]>([]);
+
+  const [kpis, setKpis] = useState<KpiCardProps[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getKpis()
-      .then(setKpis)
+      .then((data: Kpi[]) => {
+        // Convert icon from ReactNode to string (assuming Kpi.icon is a string key)
+        const mapped = data.map(({ icon, ...rest }) => ({
+          ...rest,
+          icon: typeof icon === 'string' ? icon : '',
+        }));
+        setKpis(mapped);
+      })
       .finally(() => setLoading(false));
   }, []);
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { getRevenues } from "@/app/services/RevenueChart";
-import { RevenueChart } from "@/app/types/RevenueChart";
+import { Revenue } from "@/app/types/RevenueChart";
 import React, { useEffect, useState } from "react";
 import {
     LineChart,
@@ -14,7 +14,7 @@ import {
 
 
 export default function RevenueChart() {
-    const [data, setData] = useState<RevenueChart[]>([]);
+    const [data, setData] = useState<Revenue[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
