@@ -25,7 +25,7 @@ export default function CustomersPage() {
                 <h1 className="text-[28px] font-bold text-[#0F172A] mb-2 tracking-tight">Customers</h1>
                 <CustomersSummary />
                 <CustomersFilter onChange={setFilter} />
-                <CustomersTable data={filtered} />
+                <CustomersTable />
             </div>
         </div>
     );

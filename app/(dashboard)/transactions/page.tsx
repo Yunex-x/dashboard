@@ -26,7 +26,7 @@ export default function TransactionPage() {
                 <h1 className="text-[28px] font-bold text-[#0F172A] mb-2 tracking-tight">Transactions</h1>
                 <TransactionsSummary />
                 <TransactionsFilter onChange={setFilter} />
-                <TransactionsTable transactions={filteredTransactions} />
+                <TransactionsTable  />
             </div>
         </div>
     );
