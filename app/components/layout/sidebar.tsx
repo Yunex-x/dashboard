@@ -12,7 +12,7 @@ export default function Sidebar() {
     <>
       {/* Mobile button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-30 p-2 bg-white rounded-[10px]"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-[10px]"
         onClick={openSidebar}
         aria-label="Open sidebar"
       >
@@ -21,13 +21,16 @@ export default function Sidebar() {
 
       <aside
         className={`
-          fixed top-0 left-0 h-screen w-60 bg-white border-r
-          transition-transform duration-300
+          fixed inset-y-0 left-0
+          w-60 bg-white border-r
+          transform transition-transform duration-300
+          z-50
           ${open ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0
+          overflow-y-auto
         `}
       >
-        <div className="flex items-center h-20 px-7 relative">
+        <div className="flex items-center h-20 px-7 relative shrink-0">
           <span className="text-[23px] font-bold text-[#3B82F6]">
             SaaS<span className="text-[#334155]">Dash</span>
           </span>
@@ -41,13 +44,13 @@ export default function Sidebar() {
           </button>
         </div>
 
-        <nav className="flex flex-col gap-2 mt-6 px-3">
+        <nav className="flex flex-col gap-2 mt-6 px-3 pb-6">
           {sidebarMenu.map(({ label, icon: Icon, route }) => {
             const active = isActive(route);
 
             return (
               <Link
-                key={label}
+                key={route}
                 href={route}
                 onClick={closeSidebar}
                 className={`
@@ -66,13 +69,11 @@ export default function Sidebar() {
             );
           })}
         </nav>
-
-        <div className="flex-1" />
       </aside>
 
       {open && (
         <div
-          className="fixed inset-0 bg-black/30 z-30 md:hidden"
+          className="fixed inset-0 bg-black/30 z-40 md:hidden"
           onClick={closeSidebar}
         />
       )}
