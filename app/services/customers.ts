@@ -1,8 +1,7 @@
-// app/services/customers.ts
+import apiClient from "../lib/apiClient";
+import type { Customer } from "../types/customer";
 
-import type {  Customer } from "../types/customer";
-
-const customers: Customer[] = [
+const mockCustomers: Customer[] = [
   {
     name: "Alice Smith",
     joined: "2026-01-10",
@@ -47,6 +46,14 @@ const customers: Customer[] = [
   },
 ];
 
+// toggle this later when backend exists
+const USE_MOCK = true;
+
 export const getCustomers = async (): Promise<Customer[]> => {
-  return customers;
+  if (USE_MOCK) {
+    return mockCustomers;
+  }
+
+  const res = await apiClient.get<Customer[]>("/customers");
+  return res.data ;
 };

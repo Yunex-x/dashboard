@@ -1,5 +1,9 @@
+// app/services/performance.ts
+
+import apiClient from "../lib/apiClient";
 import { PerformancePoint } from "../types/PerformanceChart";
-const performanceData: PerformancePoint[] = [
+
+const mockPerformanceData: PerformancePoint[] = [
   { month: "Jan", revenue: 9000, users: 120 },
   { month: "Feb", revenue: 11000, users: 140 },
   { month: "Mar", revenue: 10500, users: 135 },
@@ -14,6 +18,11 @@ const performanceData: PerformancePoint[] = [
   { month: "Dec", revenue: 15500, users: 210 },
 ];
 
+const USE_MOCK = true;
+
 export const getPerformanceData = async (): Promise<PerformancePoint[]> => {
-  return performanceData;
+  if (USE_MOCK) return mockPerformanceData;
+
+  const res = await apiClient.get<PerformancePoint[]>("/performance");
+  return res.data;
 };

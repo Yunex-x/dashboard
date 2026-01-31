@@ -9,7 +9,7 @@ import {
   User,
 } from "lucide-react";
 
-import { routeTitles, notificationsMock } from "@/app/services/header";
+import { routeTitles, notificationsMock } from "@/app/services/notifications";
 import { useHeader } from "@/app/hooks/useHeader";
 
 function Breadcrumbs({ pathname }: { pathname: string }) {

@@ -1,3 +1,5 @@
+// app/services/sidebar.ts
+
 import { SidebarItem } from "@/app/types/sidebar";
 import { Menu, Users, TrendingUp, Layers } from "lucide-react";
 
@@ -7,8 +9,3 @@ export const sidebarMenu: SidebarItem[] = [
   { label: "Customers", icon: Users, route: "/customers" },
   { label: "Performance", icon: TrendingUp, route: "/performance" },
 ];
-
-export const getPerformanceData = async (): Promise<PerformanceEntry[]> => {
-  // Return an empty array or fetch/generate real PerformanceEntry data here
-  return [];
-};

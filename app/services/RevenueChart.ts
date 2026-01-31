@@ -1,5 +1,9 @@
+// app/services/revenue.ts
+
+import apiClient from "../lib/apiClient";
 import { Revenue } from "@/app/types/RevenueChart";
-const revenues: Revenue[] = [
+
+const mockRevenues: Revenue[] = [
   { month: "Jan", revenue: 9000 },
   { month: "Feb", revenue: 11000 },
   { month: "Mar", revenue: 10500 },
@@ -14,6 +18,11 @@ const revenues: Revenue[] = [
   { month: "Dec", revenue: 15500 },
 ];
 
+const USE_MOCK = true;
+
 export const getRevenues = async (): Promise<Revenue[]> => {
-  return revenues;
+  if (USE_MOCK) return mockRevenues;
+
+  const res = await apiClient.get<Revenue[]>("/revenues");
+  return res.data;
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { transactionStatuses } from "@/app/services/transaction";
+import { transactionStatuses } from "@/app/services/config/transaction";
 import { useTransactionsFilter } from "@/app/hooks/useTransactionsFilter";
 
 export default function TransactionsFilter({

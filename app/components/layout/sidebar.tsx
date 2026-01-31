@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { sidebarMenu } from "@/app/services/sidebar";
+import { sidebarMenu } from "@/app/services/config/sidebar";
 import { useSidebar } from "@/app/hooks/useSidebar";
 
 export default function Sidebar() {
@@ -30,7 +31,19 @@ export default function Sidebar() {
           overflow-y-auto
         `}
       >
-        <div className="flex items-center h-20 px-7 relative shrink-0">
+        {/* Header */}
+        <div className="flex items-center h-20 px-7 relative shrink-0 gap-3">
+          {/* Logo */}
+          <div className="relative w-9 h-9">
+            <Image
+              src="/yunex.png"
+              alt="Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+
           <span className="text-[23px] font-bold text-[#3B82F6]">
             SaaS<span className="text-[#334155]">Dash</span>
           </span>
