@@ -47,7 +47,7 @@ const mockCustomers: Customer[] = [
 ];
 
 // toggle this later when backend exists
-const USE_MOCK = true;
+const USE_MOCK = false;
 
 export const getCustomers = async (): Promise<Customer[]> => {
   if (USE_MOCK) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransactionsTable } from "@/app/hooks/useTransactionsTable";
-import { transactionStatusBadge } from "@/app/services/config/TransactionsTable";
+import { transactionStatusBadge } from "@/app/config/TransactionsTable";
 import { Transaction } from "@/app/types/TransactionsTable";
 
 export default function TransactionsTable({

@@ -1,6 +1,6 @@
 "use client";
 
-import { transactionStatuses } from "@/app/services/config/transaction";
+import { transactionStatuses } from "@/app/config/transaction";
 import { useTransactionsFilter } from "@/app/hooks/useTransactionsFilter";
 
 export default function TransactionsFilter({
@@ -21,10 +21,9 @@ export default function TransactionsFilter({
           key={s.value}
           className={`
             px-4 py-2 rounded-[10px] text-[15px] border transition font-semibold
-            ${
-              selected === s.value
-                ? "bg-[#EAF1FF] text-[#2563EB] border-transparent shadow-sm"
-                : "bg-white text-[#64748B] border-[#DCE3F1] hover:bg-[#F8FAFF]"
+            ${selected === s.value
+              ? "bg-[#EAF1FF] text-[#2563EB] border-transparent shadow-sm"
+              : "bg-white text-[#64748B] border-[#DCE3F1] hover:bg-[#F8FAFF]"
             }
           `}
           onClick={() => selectStatus(s.value)}

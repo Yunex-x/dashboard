@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPerformanceData } from "@/app/services/PerformanceMetrics";
+import { getPerformanceMetrics } from "@/app/services/PerformanceMetrics";
 import { PerformanceEntry } from "@/app/types/PerformanceMetrics";
 
 export function usePerformanceMetrics() {
@@ -7,7 +7,7 @@ export function usePerformanceMetrics() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getPerformanceData()
+    getPerformanceMetrics()
       .then((res) => setData(res))
       .finally(() => setLoading(false));
   }, []);

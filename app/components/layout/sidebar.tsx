@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { sidebarMenu } from "@/app/services/config/sidebar";
+import { sidebarMenu } from "@/app/config/sidebar";
 import { useSidebar } from "@/app/hooks/useSidebar";
 
 export default function Sidebar() {
@@ -69,10 +69,9 @@ export default function Sidebar() {
                 className={`
                   flex items-center gap-3 px-3 py-2 rounded-[10px]
                   border-l-4 transition
-                  ${
-                    active
-                      ? "bg-[#EAF1FF] text-[#2563EB] border-[#3B82F6]"
-                      : "text-[#64748B] border-transparent hover:bg-[#F8FAFF]"
+                  ${active
+                    ? "bg-[#EAF1FF] text-[#2563EB] border-[#3B82F6]"
+                    : "text-[#64748B] border-transparent hover:bg-[#F8FAFF]"
                   }
                 `}
               >

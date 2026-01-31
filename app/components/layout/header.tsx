@@ -3,13 +3,14 @@
 import Link from "next/link";
 import {
   Bell,
+  ChevronDown,
   ChevronRight,
   LogOut,
   Settings,
   User,
 } from "lucide-react";
 
-import { routeTitles, notificationsMock } from "@/app/services/notifications";
+import { routeTitles, notificationsMock } from "@/app/services/header";
 import { useHeader } from "@/app/hooks/useHeader";
 
 function Breadcrumbs({ pathname }: { pathname: string }) {
@@ -50,15 +51,16 @@ export default function Header() {
 
   return (
     <header className="px-8 py-6 bg-white border-b border-[#DCE3F1] sticky top-0 z-20">
-      <div className="pl-60 flex justify-between items-start">
+      <div className="flex justify-between items-start">
         <div>
-          <h1 className="hidden md:block text-[28px] font-bold text-[#0F172A]">
+          <h1 className="text-[28px] font-bold text-[#0F172A]">
             {routeTitles[pathname] || "Dashboard"}
           </h1>
           <Breadcrumbs pathname={pathname} />
         </div>
 
         <div className="flex items-center gap-6">
+          {/* Search */}
           <form
             className="hidden lg:block relative w-[290px]"
             onSubmit={(e) => {
@@ -86,6 +88,7 @@ export default function Header() {
             )}
           </form>
 
+          {/* Notifications */}
           <div className="relative">
             <button
               ref={refs.notifRef}
@@ -111,17 +114,14 @@ export default function Header() {
             )}
           </div>
 
+          {/* Avatar */}
           <div className="relative">
             <button
               ref={refs.buttonRef}
               onClick={() => setDropdownOpen((o) => !o)}
-              className="focus:outline-none"
             >
-              <img
-                src="/avatar.png"
-                className="w-10 h-10 rounded-full cursor-pointer"
-                alt="avatar"
-              />
+              <img src="/avatar.png" className="w-10 h-10 rounded-full" />
+              <ChevronDown />
             </button>
 
             {dropdownOpen && (
@@ -129,13 +129,13 @@ export default function Header() {
                 ref={refs.dropdownRef}
                 className="absolute right-0 mt-2 w-48 bg-white border rounded-[14px]"
               >
-                <button className="flex items-center gap-2 px-4 py-2 w-full">
+                <button className="flex items-center px-4 py-2">
                   <User size={18} /> Profile
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 w-full">
+                <button className="flex items-center px-4 py-2">
                   <Settings size={18} /> Settings
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 w-full text-red-500">
+                <button className="flex items-center px-4 py-2 text-red-500">
                   <LogOut size={18} /> Logout
                 </button>
               </div>
